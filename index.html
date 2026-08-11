@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md. Fariaz Islam — Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f9fb;
+      --slate-50: #f1f5f9;
+      --slate-100: #e8ecf1;
+      --slate-200: #d1d8e0;
+      --slate-400: #8994a5;
+      --slate-600: #4b5768;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --navy: #1e3a5f;
+      --blue: #2563eb;
+      --blue-light: #dbeafe;
+      --gold: #b8860b;
+      --gold-light: #fdf6e3;
+      --teal: #0d7377;
+      --serif: 'Cormorant Garamond', 'Georgia', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'IBM Plex Mono', 'Consolas', monospace;
+      --max-w: 1080px;
+      --section-py: 5rem;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--slate-800);
+      background: var(--white);
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--gold-light); color: var(--slate-900); }
+
+    a { color: var(--navy); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--blue); }
+
+    img { max-width: 100%; display: block; }
+
+    /* ========== NAVIGATION ========== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--slate-100);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0.9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--slate-900);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--slate-600);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--slate-900); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: var(--slate-800); }
+
+    /* ========== PROFILE PICTURE ========== */
+    .profile-pic-wrapper {
+      margin-bottom: 1.8rem;
+      display: flex;
+      justify-content: center;
+    }
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 4px solid var(--white);
+      box-shadow:
+        0 0 0 1px var(--slate-200),
+        0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .profile-pic:hover {
+      transform: scale(1.04);
+      box-shadow:
+        0 0 0 1px var(--gold),
+        0 12px 32px rgba(0,0,0,0.12);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 20%, rgba(37,99,235,0.04), transparent),
+        radial-gradient(ellipse 50% 60% at 10% 80%, rgba(184,134,11,0.04), transparent);
+      pointer-events: none;
+    }
+    /* subtle grid pattern — evokes IC layout */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--slate-100) 1px, transparent 1px),
+        linear-gradient(90deg, var(--slate-100) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.35;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 760px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--slate-900);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-name .dot { color: var(--gold); }
+    .hero-summary {
+      font-size: 1.02rem;
+      color: var(--slate-600);
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+    }
+    .hero-interests {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .interest-chip {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      border: 1px solid var(--slate-200);
+      color: var(--slate-600);
+      background: var(--white);
+      transition: all 0.25s;
+    }
+    .interest-chip:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-light);
+    }
+    .hero-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.6rem 1.3rem;
+      border-radius: 6px;
+      transition: all 0.25s;
+    }
+    .hero-link svg { width: 16px; height: 16px; }
+    .hero-link.primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .hero-link.primary:hover { background: var(--blue); color: var(--white); }
+    .hero-link.secondary {
+      background: var(--white);
+      color: var(--slate-800);
+      border: 1px solid var(--slate-200);
+    }
+    .hero-link.secondary:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    /* ========== SECTIONS ========== */
+    .section { padding: var(--section-py) 2rem; }
+    .section.alt { background: var(--off-white); }
+    .section-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.8rem;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .section-line { flex: 1; height: 1px; background: var(--slate-200); }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--slate-900);
+      letter-spacing: -0.02em;
+    }
+
+    /* ========== EDUCATION ========== */
+    .edu-card {
+      display: flex;
+      gap: 1.8rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .edu-card:last-child { border-bottom: none; }
+    .edu-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .edu-icon svg { width: 22px; height: 22px; color: var(--gold); }
+    .edu-body { flex: 1; }
+    .edu-institution {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--slate-900);
+      margin-bottom: 0.15rem;
+    }
+    .edu-degree { font-size: 0.92rem; color: var(--slate-600); margin-bottom: 0.25rem; }
+    .edu-meta {
+      font-size: 0.82rem;
+      color: var(--slate-400);
+      font-weight: 500;
+    }
+    .edu-meta span + span::before { content: '  ·  '; }
+    .edu-courses {
+      margin-top: 0.7rem;
+      font-size: 0.82rem;
+      color: var(--slate-600);
+      line-height: 1.7;
+    }
+    .edu-courses strong { color: var(--slate-800); font-weight: 600; }
+
+    /* ========== PUBLICATIONS ========== */
+    .pub-list { list-style: none; counter-reset: pub; }
+    .pub-item {
+      position: relative;
+      padding: 1.5rem 0 1.5rem 3rem;
+      border-bottom: 1px solid var(--slate-100);
+      counter-increment: pub;
+    }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-item::before {
+      content: '[' counter(pub) ']';
+      position: absolute;
+      left: 0; top: 1.55rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--slate-900);
+      line-height: 1.6;
+      margin-bottom: 0.4rem;
+    }
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      margin-bottom: 0.35rem;
+    }
+    .pub-authors .me { font-weight: 600; color: var(--navy); }
+    .pub-venue {
+      font-size: 0.82rem;
+      color: var(--slate-400);
+      font-style: italic;
+    }
+    .pub-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-style: normal;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: #dcfce7;
+      color: #166534;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+    .pub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--blue);
+      margin-left: 0.6rem;
+    }
+    .pub-link:hover { text-decoration: underline; }
+    .pub-link svg { width: 12px; height: 12px; }
+
+    /* ========== RESEARCH ========== */
+    .research-card {
+      background: var(--white);
+      border: 1px solid var(--slate-100);
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .research-card:hover {
+      border-color: var(--slate-200);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .research-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .research-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--slate-900);
+      line-height: 1.35;
+    }
+    .research-status {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .research-status.ongoing { background: #fff7ed; color: #c2410c; }
+    .research-status.completed { background: #dcfce7; color: #166534; }
+    .research-bullets { list-style: none; margin-top: 0.6rem; }
+    .research-bullets li {
+      position: relative;
+      padding: 0.4rem 0 0.4rem 1.2rem;
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      line-height: 1.7;
+    }
+    .research-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0.95rem;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* ========== EXPERIENCE ========== */
+    .exp-card {
+      position: relative;
+      padding: 0 0 0 2.2rem;
+    }
+    .exp-line {
+      position: absolute;
+      left: 6px; top: 8px; bottom: 0;
+      width: 1.5px;
+      background: var(--slate-200);
+    }
+    .exp-dot {
+      position: absolute;
+      left: 0; top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2.5px solid var(--gold);
+      background: var(--white);
+    }
+    .exp-role {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--slate-900);
+    }
+    .exp-company {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      margin-bottom: 0.15rem;
+    }
+    .exp-dates {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: var(--slate-400);
+      margin-bottom: 0.7rem;
+    }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      position: relative;
+      padding: 0.3rem 0 0.3rem 1rem;
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.7;
+    }
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0; top: 0.3rem;
+      color: var(--slate-400);
+    }
+
+    /* ========== PROJECTS ========== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--slate-100);
+      border-radius: 10px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+    }
+    .project-card:hover {
+      border-color: var(--slate-200);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transform: translateY(-2px);
+    }
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+    .project-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--slate-900);
+      line-height: 1.4;
+      flex: 1;
+    }
+    .project-github {
+      flex-shrink: 0;
+      margin-left: 0.8rem;
+      color: var(--slate-400);
+      transition: color 0.2s;
+    }
+    .project-github:hover { color: var(--slate-900); }
+    .project-github svg { width: 18px; height: 18px; }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.8rem;
+    }
+    .project-tech span {
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      font-weight: 500;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: var(--slate-50);
+      color: var(--slate-600);
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* ========== SKILLS ========== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group h4 {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      font-weight: 500;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.7rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .skill-tag {
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      background: var(--slate-50);
+      color: var(--slate-800);
+      border: 1px solid var(--slate-100);
+      transition: all 0.2s;
+    }
+    .skill-tag:hover {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    /* ========== COURSES ========== */
+    .courses-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 0.6rem;
+    }
+    .course-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: var(--slate-700);
+      transition: background 0.2s;
+    }
+    .course-item:hover { background: var(--slate-50); }
+    .course-check {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #dcfce7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .course-check svg { width: 11px; height: 11px; color: #166534; }
+    .course-item a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--blue);
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    /* ========== REFERENCES ========== */
+    .refs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .ref-card {
+      padding: 1.6rem;
+      background: var(--white);
+      border: 1px solid var(--slate-100);
+      border-radius: 10px;
+    }
+    .ref-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--slate-900);
+      margin-bottom: 0.2rem;
+    }
+    .ref-title { font-size: 0.85rem; color: var(--slate-600); }
+    .ref-dept {
+      font-size: 0.82rem;
+      color: var(--slate-400);
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+    }
+    .ref-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-family: var(--mono);
+      color: var(--blue);
+    }
+    .ref-email svg { width: 14px; height: 14px; }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--slate-100);
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .footer-links a {
+      color: var(--slate-400);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--slate-800); }
+    .footer-links a svg { width: 20px; height: 20px; }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--slate-400);
+    }
+
+    /* ========== FADE-IN ANIMATION ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      :root { --section-py: 3.5rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--white);
+        padding: 1rem 2rem 1.5rem;
+        border-bottom: 1px solid var(--slate-100);
+        gap: 1rem;
+      }
+      .nav-toggle { display: block; }
+      .hero { min-height: auto; padding: 8rem 1.5rem 3rem; }
+      .profile-pic { width: 130px; height: 130px; }
+      .hero-name { font-size: 2.4rem; }
+      .section { padding: var(--section-py) 1.5rem; }
+      .edu-card { flex-direction: column; gap: 0.8rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .courses-list { grid-template-columns: 1fr; }
+      .refs-grid { grid-template-columns: 1fr; }
+      .research-header { flex-direction: column; gap: 0.5rem; }
+      .pub-item { padding-left: 2.4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">F<span>.</span>Islam</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#education">Education</a>
+      <a href="#publications">Publications</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#references">References</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content fade-in">
+    <div class="profile-pic-wrapper">
+      <img src="fariaz.jpeg" alt="Md. Fariaz Islam" class="profile-pic" />
+    </div>
+    <p class="hero-eyebrow">Researcher · VLSI · Hardware-Efficient AI</p>
+    <h1 class="hero-name">Md<span class="dot">.</span> Fariaz Islam</h1>
+    <p class="hero-summary">
+      Electronics and Telecommunication Engineering graduate from Chittagong University of Engineering and Technology (CUET) with expertise in VLSI design, digital systems, and hardware-efficient AI. Experienced in analog/custom IC design, physical layout, automation, and deep learning optimization through industry training and research.
+    </p>
+    <div class="hero-interests">
+      <span class="interest-chip">In-/Near-Memory Computing</span>
+      <span class="interest-chip">Energy-Efficient Edge AI</span>
+      <span class="interest-chip">AI Accelerators</span>
+      <span class="interest-chip">eNVM</span>
+      <span class="interest-chip">STT-MRAM</span>
+      <span class="interest-chip">Spintronic Devices</span>
+    </div>
+    <div class="hero-links">
+      <a href="mailto:fariazislam99@gmail.com" class="hero-link primary">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        Contact
+      </a>
+      <a href="https://www.linkedin.com/in/md-fariaz-islam-5207971ab/" target="_blank" class="hero-link secondary">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Fariaz99cuet" target="_blank" class="hero-link secondary">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.researchgate.net/profile/Fariaz-Islam-2?ev=hdr_xprf" target="_blank" class="hero-link secondary">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M19.586 0c-1.326 0-2.4 1.074-2.4 2.4s1.074 2.4 2.4 2.4 2.4-1.074 2.4-2.4S20.912 0 19.586 0zm-7.343 7.2c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zm0 13.6c-3.09 0-5.6-2.51-5.6-5.6s2.51-5.6 5.6-5.6 5.6 2.51 5.6 5.6-2.51 5.6-5.6 5.6z"/></svg>
+        ResearchGate
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section class="section" id="education">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Background</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">Education</h2>
+
+    <div class="edu-card fade-in">
+      <div class="edu-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15v-3.75m0 0h-.008v.008H6.75V11.25z"/></svg>
+      </div>
+      <div class="edu-body">
+        <div class="edu-institution">Chittagong University of Engineering and Technology (CUET)</div>
+        <div class="edu-degree">B.Sc. in Electronics and Telecommunication Engineering (ETE)</div>
+        <div class="edu-meta">
+          <span>Feb 2020 – Aug 2025</span>
+          <span>CGPA: 3.67 / 4.00</span>
+        </div>
+        <div class="edu-courses">
+          <strong>Coursework:</strong> VLSI, Digital Integrated Circuits, Microprocessor, Digital Logic Design, Electronics 1 &amp; 2, Programming Language, Data Structures &amp; Algorithms, OOP, Signal &amp; Systems, Digital Signal Processing, Digital Communications, Linear Algebra, Probability
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card fade-in">
+      <div class="edu-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15v-3.75m0 0h-.008v.008H6.75V11.25z"/></svg>
+      </div>
+      <div class="edu-body">
+        <div class="edu-institution">Notre Dame College, Dhaka, Bangladesh</div>
+        <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
+        <div class="edu-meta">
+          <span>Mar 2017 – Jul 2019</span>
+          <span>GPA: 5.00 / 5.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PUBLICATIONS ===== -->
+<section class="section alt" id="publications">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Scholarly Work</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">Publications</h2>
+
+    <ol class="pub-list">
+      <li class="pub-item fade-in">
+        <div class="pub-title">Bangla Visual Question Answering Using Gated Cross-Attention and Reinforcement-Optimized Fusion</div>
+        <div class="pub-authors"><span class="me">Md. Fariaz Islam</span>, Md. Mostafizur Rahman, Mohammad Isfar Nayen, Md. Mahmudul Arif, Hasib Hasnat, Refatul Islam Roni</div>
+        <div class="pub-venue">ICCIT 2025, IEEE <span class="pub-badge">Published</span>
+          <a href="https://ieeexplore.ieee.org/abstract/document/11491619" target="_blank" class="pub-link">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+            IEEE Xplore
+          </a>
+        </div>
+      </li>
+      <li class="pub-item fade-in">
+        <div class="pub-title">Attention-based Multi-level Feature Fusion for Multilingual Speech Emotion Recognition</div>
+        <div class="pub-authors">Tonmoy Das, <span class="me">Fariaz Islam</span>, Nursadul Mamun</div>
+        <div class="pub-venue">ECCE 2025, IEEE, CUET <span class="pub-badge">Published</span>
+          <a href="https://ieeexplore.ieee.org/document/11013794" target="_blank" class="pub-link">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+            IEEE Xplore
+          </a>
+        </div>
+      </li>
+      <li class="pub-item fade-in">
+        <div class="pub-title">Joint Modeling of Environmental Sounds for Diverse Hearing Profiles Using a Hybrid CNN-BiLSTM-Attention Network</div>
+        <div class="pub-authors">Sarkar Minhaz Ahmed, <span class="me">Md. Fariaz Islam</span>, Nursadul Mamun</div>
+        <div class="pub-venue">ICCIT 2025, IEEE. DOI: 10.1109/ICCIT68739.2025.11491243 <span class="pub-badge">Published</span>
+          <a href="https://ieeexplore.ieee.org/document/11491243" target="_blank" class="pub-link">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+            IEEE Xplore
+          </a>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== RESEARCH EXPERIENCE ===== -->
+<section class="section" id="research">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Investigations</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">Research Experience</h2>
+
+    <div class="research-card fade-in">
+      <div class="research-header">
+        <div class="research-title">Double-Barrier Exchange-Coupled-Composite MTJ Compact Model for BNN Accelerators</div>
+        <span class="research-status ongoing">Ongoing</span>
+      </div>
+      <ul class="research-bullets">
+        <li>Proposed a novel DB-ECC-MTJ device architecture combining double-barrier STT enhancement with exchange-coupled-composite free layer optimization, achieving reduced switching current while keeping high thermal stability over conventional single-barrier MTJ at the 12 nm technology node.</li>
+        <li>Implemented a Verilog-A compact model in Cadence Virtuoso with interface-localized distributed spin-transfer torque, timer-based switching dynamics, and Brinkman tunneling resistance; demonstrated ΔE ≈ 60, I<sub>c0</sub> &lt; 20 μA, device TMR ≈ 129%, and bidirectional switching within 1.5 ns at ±0.8 V in a 1T-1MTJ bitcell using gpdk090.</li>
+        <li>Currently extending the model to Deep Neural Network (DNN) inference accelerator design, leveraging the MTJ's inherent binary stochasticity and non-volatile weight storage for energy-efficient edge AI applications.</li>
+      </ul>
+    </div>
+
+    <div class="research-card fade-in">
+      <div class="research-header">
+        <div class="research-title">Hardware-Aware Bangla Vision-Language Model</div>
+        <span class="research-status completed">2025</span>
+      </div>
+      <ul class="research-bullets">
+        <li><strong>Hardware-Aware Bangla VLM Architecture:</strong> Designed a parameter-efficient vision-language model combining a frozen CLIP ViT-B/32 encoder, a novel Weighted Patch Aggregation (WPA) projector, and a LoRA-adapted Bangla LLM decoder, reducing trainable parameters to a small fraction of the full model while preserving captioning capability.</li>
+        <li>Implemented structured pruning-aware and quantization-aware fine-tuning via a straight-through estimator, so trainable weights adapt to reduced vision-tower capacity and INT8-rounded representations before deployment; applied post-training INT8 dynamic quantization to the language decoder for CPU inference.</li>
+        <li>Built a full hardware evaluation pipeline profiling parameter count, FLOPs, latency, throughput, and memory footprint across baseline/pruned/quantized configurations, achieving an estimated 60% reduction in model size and ~1.5× lower CPU inference latency via INT8 post-training quantization; evaluated captioning quality via BLEU, with a VQA extension underway for accuracy-based evaluation.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROFESSIONAL EXPERIENCE ===== -->
+<section class="section alt" id="experience">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Industry</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">Professional Experience</h2>
+
+    <div class="exp-card fade-in">
+      <div class="exp-line"></div>
+      <div class="exp-dot"></div>
+      <div class="exp-role">Trainee Engineer — VLSI Automation</div>
+      <div class="exp-company">Ulkasemi Limited — Foundry Design &amp; Technology Services (FTDS), Automation Team</div>
+      <div class="exp-dates">January 2026 – May 2026</div>
+      <ul class="exp-bullets">
+        <li>Trained in analog circuit schematic design and verification, performing transient and DC analysis with parametric sweeps to characterize fundamental CMOS cells across operating conditions.</li>
+        <li>Executed full-custom layout design of standard cells (Inverter, AND, OR, NOR, AOI, 2:1 Multiplexer), completing DRC and LVS cleaning to ensure design-rule compliance and schematic–layout equivalence.</li>
+        <li>Developed Cadence SKILL scripts to programmatically generate and modify schematic and layout designs, automating repetitive design tasks and reducing manual effort.</li>
+        <li>Built Python automation scripts in a Linux environment to streamline VLSI design and verification workflows, improving turnaround time and consistency across the design flow.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KEY PROJECTS ===== -->
+<section class="section" id="projects">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Portfolio</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">Key Projects</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-title">Hardware Implementation of Pipelined Parallel Transformer Attention</div>
+          <a href="https://github.com/Fariaz99cuet/Hardware-Implementation-of-Pipelined-Parallel-Transformer-Attention-.git" target="_blank" class="project-github" aria-label="Source code">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+        <div class="project-tech">
+          <span>Verilog</span><span>Python</span><span>Icarus Verilog</span>
+        </div>
+        <div class="project-desc">
+          Designed a fully pipelined Scaled Dot-Product Attention accelerator with 132 unrolled 16-bit Q8.8 fixed-point MAC units, a custom hardware-efficient Softmax engine with 64-entry LUT, and an automated Icarus Verilog + NumPy verification testbench.
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-title">2:1 Multiplexer Layout Design</div>
+        </div>
+        <div class="project-tech">
+          <span>Cadence Virtuoso</span><span>CMOS</span><span>DRC</span><span>LVS</span>
+        </div>
+        <div class="project-desc">
+          Designed and implemented the physical layout of a CMOS 2:1 Multiplexer using Cadence Virtuoso, completing strict DRC and LVS verification for full foundry-rule compliance and schematic–layout equivalence.
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-title">SAP-1 Architecture Simulation</div>
+        </div>
+        <div class="project-tech">
+          <span>Logisim</span><span>VLSI</span><span>Computer Architecture</span>
+        </div>
+        <div class="project-desc">
+          Implemented a complete SAP-1 microprocessor in Logisim with registers, ALU, memory, control unit, and a 4-bit instruction set (LDA, ADD, SUB, OUT, HLT) over an 8-bit data bus and 16-byte memory.
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-title">Real-Time Voice Assistant</div>
+        </div>
+        <div class="project-tech">
+          <span>ESP32</span><span>C++</span><span>Node.js</span><span>WebSockets</span><span>LLMs</span>
+        </div>
+        <div class="project-desc">
+          Developed a hardware voice assistant on ESP32 with I2S mic/speaker, streaming audio via WebSockets to a Node.js backend for cloud-based STT and LLM inference, returning dynamic text and audio responses.
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-title">Transformer from Scratch: Seq2Seq Translation</div>
+          <a href="https://github.com/Fariaz99cuet/Transformer_from_scratch.git" target="_blank" class="project-github" aria-label="Source code">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+        <div class="project-tech">
+          <span>PyTorch</span><span>NLP</span><span>Attention Visualization</span>
+        </div>
+        <div class="project-desc">
+          Implemented the complete Transformer architecture from "Attention Is All You Need" for English-to-Italian translation, including custom tokenization, positional encoding, multi-head attention, and attention-map visualizers.
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-title">Efficient Deep Learning: TinyML &amp; Edge AI</div>
+          <a href="https://github.com/Fariaz99cuet/TinyML-and-Efficient-Deep-Learning-Computing-course-From-MIT-Assignment-Solutions-.git" target="_blank" class="project-github" aria-label="Source code">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+        <div class="project-tech">
+          <span>MIT 6.5940</span><span>Pruning</span><span>Quantization</span>
+        </div>
+        <div class="project-desc">
+          Applied structured and unstructured pruning for significant parameter reduction while preserving accuracy, and implemented post-training and mixed-precision quantization for edge-device deployment.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section class="section alt" id="skills">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Toolkit</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">Technical Skills</h2>
+
+    <div class="skills-grid fade-in">
+      <div class="skill-group">
+        <h4>Programming</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Verilog</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">Linux</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>EDA &amp; Software</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Cadence Virtuoso</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">Quartus</span>
+          <span class="skill-tag">CISCO Packet Tracer</span>
+          <span class="skill-tag">CST Studio</span>
+          <span class="skill-tag">VS Code</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>ML Libraries</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Keras</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Writing &amp; Editing</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">LaTeX</span>
+          <span class="skill-tag">Microsoft Word</span>
+          <span class="skill-tag">Microsoft PowerPoint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROFESSIONAL COURSES ===== -->
+<section class="section" id="courses">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Learning</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">Professional Courses</h2>
+
+    <div class="courses-list fade-in">
+      <div class="course-item">
+        <div class="course-check"><svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+        Basic Programming with Python
+        <a href="https://drive.google.com/file/d/1fc5jnqzUji0sNf7uthAER5zwxrx6Qc5c/view" target="_blank">EDGE</a>
+      </div>
+      <div class="course-item">
+        <div class="course-check"><svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+        Python Data Structures
+        <a href="https://www.coursera.org/account/accomplishments/verify/ZVJY5AMCJ3PP" target="_blank">Coursera</a>
+      </div>
+      <div class="course-item">
+        <div class="course-check"><svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+        NLP with Classification and Vector Spaces
+        <a href="https://www.coursera.org/account/accomplishments/verify/HU3RTHFCZZ5Q" target="_blank">Coursera</a>
+      </div>
+      <div class="course-item">
+        <div class="course-check"><svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+        Convolutional Neural Networks
+        <a href="https://www.coursera.org/account/accomplishments/verify/4H9Z2S87668H" target="_blank">Coursera</a>
+      </div>
+      <div class="course-item">
+        <div class="course-check"><svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+        Sequence Models
+        <a href="https://www.coursera.org/account/accomplishments/verify/6JQKCMDTV4W3" target="_blank">Coursera</a>
+      </div>
+      <div class="course-item">
+        <div class="course-check"><svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+        Introduction to Databases
+        <a href="https://www.coursera.org/account/accomplishments/verify/4750081H1F2K" target="_blank">Coursera</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REFERENCES ===== -->
+<section class="section alt" id="references">
+  <div class="section-inner">
+    <div class="section-header fade-in">
+      <span class="section-label">Endorsements</span>
+      <span class="section-line"></span>
+    </div>
+    <h2 class="section-title fade-in" style="margin-top:-1.8rem; margin-bottom:2rem;">References</h2>
+
+    <div class="refs-grid fade-in">
+      <div class="ref-card">
+        <div class="ref-name">Dr. Nursadul Mamun</div>
+        <div class="ref-title">Assistant Professor</div>
+        <div class="ref-dept">
+          Dept. of Electronics and Telecommunication Engineering<br />
+          Chittagong University of Engineering and Technology<br />
+          Chattogram-4349, Bangladesh
+        </div>
+        <a href="mailto:nursad.mamun@cuet.ac.bd" class="ref-email">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          nursad.mamun@cuet.ac.bd
+        </a>
+      </div>
+      <div class="ref-card">
+        <div class="ref-name">Dr. Md Saiful Islam</div>
+        <div class="ref-title">Associate Professor</div>
+        <div class="ref-dept">
+          Dept. of Electronics and Telecommunication Engineering<br />
+          Chittagong University of Engineering and Technology<br />
+          Chattogram-4349, Bangladesh
+        </div>
+        <a href="mailto:saiful05eee@cuet.ac.bd" class="ref-email">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          saiful05eee@cuet.ac.bd
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="mailto:fariazislam99@gmail.com" aria-label="Email">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/md-fariaz-islam-5207971ab/" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://github.com/Fariaz99cuet" target="_blank" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://www.researchgate.net/profile/Fariaz-Islam-2?ev=hdr_xprf" target="_blank" aria-label="ResearchGate">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-1.326 0-2.4 1.074-2.4 2.4s1.074 2.4 2.4 2.4 2.4-1.074 2.4-2.4S20.912 0 19.586 0zm-7.343 7.2c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zm0 13.6c-3.09 0-5.6-2.51-5.6-5.6s2.51-5.6 5.6-5.6 5.6 2.51 5.6 5.6-2.51 5.6-5.6 5.6z"/></svg>
+      </a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Md. Fariaz Islam. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav shadow
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => links.classList.remove('open'))
+  );
+
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
