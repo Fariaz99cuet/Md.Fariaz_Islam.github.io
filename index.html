@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,13 +108,16 @@
     /* ========== PROFILE PICTURE ========== */
     .profile-pic-wrapper {
       margin-bottom: 1.8rem;
+      display: flex;
+      justify-content: center;
     }
     .profile-pic {
-      width: 150px;
-      height: 150px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--white);
+      display: block;
+      border: 4px solid var(--white);
       box-shadow:
         0 0 0 1px var(--slate-200),
         0 8px 24px rgba(0,0,0,0.08);
@@ -124,24 +128,6 @@
       box-shadow:
         0 0 0 1px var(--gold),
         0 12px 32px rgba(0,0,0,0.12);
-    }
-    /* placeholder when no image is set yet */
-    .profile-pic-placeholder {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--slate-50) 0%, var(--slate-100) 100%);
-      border: 3px solid var(--white);
-      box-shadow: 0 0 0 1px var(--slate-200), 0 8px 24px rgba(0,0,0,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-    }
-    .profile-pic-placeholder svg {
-      width: 48px;
-      height: 48px;
-      color: var(--slate-400);
     }
 
     /* ========== HERO ========== */
@@ -179,6 +165,10 @@
     .hero-content {
       position: relative; z-index: 1;
       max-width: 760px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
     .hero-eyebrow {
@@ -719,8 +709,7 @@
       }
       .nav-toggle { display: block; }
       .hero { min-height: auto; padding: 8rem 1.5rem 3rem; }
-      .profile-pic, .profile-pic-placeholder { width: 120px; height: 120px; }
-      .profile-pic-placeholder svg { width: 38px; height: 38px; }
+      .profile-pic { width: 130px; height: 130px; }
       .hero-name { font-size: 2.4rem; }
       .section { padding: var(--section-py) 1.5rem; }
       .edu-card { flex-direction: column; gap: 0.8rem; }
@@ -767,22 +756,7 @@
   <div class="hero-grid"></div>
   <div class="hero-content fade-in">
     <div class="profile-pic-wrapper">
-      <!-- ============================================================
-           REPLACE YOUR PHOTO HERE:
-           1. Add your photo file (e.g. "profile.jpg") to the same
-              folder as this index.html
-           2. Uncomment the <img> line below and delete the placeholder
-              block beneath it
-           ============================================================ -->
-
-       <img src="fariaz.jpeg" alt="Md. Fariaz Islam" class="profile-pic" />
-
-      <!-- Placeholder — delete this block once you add your photo -->
-     
-        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-        </svg>
-      </div>
+      <img src="fariaz.jpeg" alt="Md. Fariaz Islam" class="profile-pic" />
     </div>
     <p class="hero-eyebrow">Researcher · VLSI · Hardware-Efficient AI</p>
     <h1 class="hero-name">Md<span class="dot">.</span> Fariaz Islam</h1>
